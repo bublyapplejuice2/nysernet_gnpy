@@ -1,0 +1,121 @@
+{
+    "network_name": "Optical Layer Alb-NYC-Bin",
+    "elements": [
+        {
+            "uid": "albany",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        },
+        {
+            "uid": "saug",
+            "type": "Transceiver"
+        },
+        {
+            "uid": "roadm_albany0",
+            "type": "Roadm"
+        },
+        {
+            "uid": "roadm_albany1",
+            "type": "Roadm"
+        },
+        {
+            "uid": "edfa_albany0",
+            "type": "Edfa",
+            "type_variety": "amp_s20H",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -0.5,
+                "out_voa": -3.5
+            }
+        },
+        {
+            "uid": "edfa_albany1",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 11,
+                "tilt_target": -0.5,
+                "out_voa": -0.8
+            }
+        },
+        {
+            "uid": "raman_albany0",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1.0,
+                "out_voa": -0.8
+            }
+        },
+        {
+            "uid": "edfa_saug0",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 14,
+                "tilt_target": -0.5,
+                "out_voa": -3.5
+            }
+        },
+        {
+            "uid": "edfa_saug1",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 12,
+                "tilt_target": -1.0,
+                "out_voa": -3.5
+            }
+        },
+        {
+            "uid": "raman_saug0",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1.0,
+                "out_voa": -0.8
+            }
+        },
+        {
+            "uid": "Span1",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 76,
+                "loss_coef": 0.237,
+                "length_units": "km",
+                "att_in": 1.42,
+                "con_in": 0,
+                "con_out": 0               
+                }
+        }
+    ],
+    "connections": [
+    {
+        "from_node": "albany",
+        "to_node": "roadm_albany0"
+    },
+    {
+        "from_node": "roadm_albany0",
+        "to_node": "edfa_albany0"
+    },
+    {
+        "from_node": "edfa_albany0",
+        "to_node": "Span1"
+    },
+    {
+        "from_node": "Span1",
+        "to_node": "raman_saug0"
+    },
+    {
+        "from_node": "raman_saug0",
+        "to_node": "edfa_saug1"
+    },
+    {
+        "from_node": "edfa_saug1",
+        "to_node": "saug"
+    }
+]
+}

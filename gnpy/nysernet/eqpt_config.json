@@ -1,0 +1,139 @@
+{     "Edfa":[
+            {
+                  "type_variety": "edfa_s20H",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 35,
+                  "gain_min": 19,
+                  "p_max": 21.3,
+                  "nf_min": 6.2,
+                  "nf_max": 11,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            },
+            {
+                  "type_variety": "edfa_s20L",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 21,
+                  "gain_min": 11,
+                  "p_max": 21.3,
+                  "nf_min": 5.8,
+                  "nf_max": 15,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            },           
+            {
+                  "type_variety": "4pumps_raman",
+                  "type_def": "fixed_gain",
+                  "raman": true,
+                  "gain_flatmax": 15,
+                  "gain_min": 9,
+                  "p_max": 30,
+                  "nf0": -1,
+                  "nf_max": -1,
+                  "allowed_for_design": false
+            },
+            {
+                  "type_variety": "amp_s20H",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 20,
+                  "gain_min": 11,
+                  "p_max": 20.8,
+                  "nf_min": 5.5,
+                  "nf_max": 9.5,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            },
+            {
+                  "type_variety": "amp_s20L",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 13,
+                  "gain_min": 7,
+                  "p_max": 20.8,
+                  "nf_min": 6.5,
+                  "nf_max": 10,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            }                         
+      ],
+      "Fiber":[{
+            "type_variety": "SSMF",
+            "dispersion": 1.67e-05,
+            "effective_area": 83e-12,
+            "pmd_coef": 1.265e-15
+            }
+      ],
+      "RamanFiber":[{
+            "type_variety": "SSMF",
+            "dispersion": 1.67e-05,
+            "effective_area": 83e-12,
+            "pmd_coef": 1.265e-15
+            }
+      ],
+      "Span":[{
+            "power_mode":true,
+            "delta_power_range_db": [-2,3,0.5],
+            "max_fiber_lineic_loss_for_raman": 0.25,
+            "target_extended_gain": 2.5,
+            "max_length": 150,
+            "length_units": "km",
+            "max_loss": 28,
+            "padding": 10,
+            "EOL": 0,
+            "con_in": 0,
+            "con_out": 0
+            }
+      ],
+      "Roadm":[{
+            "target_pch_out_db": -15,
+            "add_drop_osnr": 38,
+            "pmd": 0,
+            "pdl": 0,
+            "restrictions": {
+                            "preamp_variety_list":[],
+                            "booster_variety_list":[]
+                            }            
+            }],
+      "SI":[{
+            "f_min": 193.2e12,
+            "baud_rate": 32e9,
+            "f_max":193.4e12,
+            "spacing": 50e9,
+            "power_dbm": 0,
+            "power_range_db": [0,0,1],
+            "roll_off": 0.15,
+            "tx_osnr": 40,
+            "sys_margins": 2
+            }],
+      "Transceiver":[
+            {
+            "type_variety": "vendorA",
+            "frequency":{
+                        "min": 191.35e12,
+                        "max": 196.1e12
+                        },
+            "mode":[
+                       {
+
+                       "format": "mode 1",
+                       "baud_rate": 32e9,
+                       "OSNR": 11,
+                       "bit_rate": 100e9,
+                       "roll_off": 0.15,
+                       "tx_osnr": 40,
+                       "min_spacing": 37.5e9,
+                       "cost":1
+                       },
+                       {
+                       "format": "mode 2",
+                       "baud_rate": 66e9,
+                       "OSNR": 15,
+                       "bit_rate": 200e9,
+                       "roll_off": 0.15,
+                       "tx_osnr": 40,
+                       "min_spacing": 75e9,
+                       "cost":1
+                       }
+                   ]
+            }
+      ]
+}
