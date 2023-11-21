@@ -20,6 +20,17 @@
                   "nf_max": 15,
                   "out_voa_auto": false,
                   "allowed_for_design": true
+            }, 
+            {
+                  "type_variety": "edfa_s10L",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 16,
+                  "gain_min": 10,
+                  "p_max": 11,
+                  "nf_min": 5.6,
+                  "nf_max": 7.5,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
             },           
             {
                   "type_variety": "4pumps_raman",
@@ -73,14 +84,14 @@
             "power_mode":true,
             "delta_power_range_db": [-2,3,0.5],
             "max_fiber_lineic_loss_for_raman": 0.25,
-            "target_extended_gain": 2.5,
+            "target_extended_gain": 3,
             "max_length": 150,
             "length_units": "km",
-            "max_loss": 28,
+            "max_loss": 42,
             "padding": 10,
             "EOL": 0,
-            "con_in": 0,
-            "con_out": 0
+            "con_in": 0.75,
+            "con_out": 0.75
             }
       ],
       "Roadm":[{
@@ -94,9 +105,9 @@
                             }            
             }],
       "SI":[{
-            "f_min": 193.2e12,
+            "f_min": 191.3e12,
             "baud_rate": 32e9,
-            "f_max":193.4e12,
+            "f_max":195.1e12,
             "spacing": 50e9,
             "power_dbm": 0,
             "power_range_db": [0,0,1],

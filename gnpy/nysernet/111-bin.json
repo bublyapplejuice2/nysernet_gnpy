@@ -1,0 +1,224 @@
+{
+    "network_name": "Optical Layer 111EighthAve-bin",
+    "elements": [
+        {
+            "uid": "111",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        },
+        {
+            "uid": "roadm_111",
+            "type": "Roadm"
+        },
+        {
+            "uid": "edfa_111",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1,
+                "out_voa": -1
+            }
+        },
+        {
+            "uid": "Span1",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 84.5,
+                "loss_coef": 0.243,
+                "length_units": "km",
+                "att_in": -1.2         
+            }
+        },
+        {
+            "uid": "edfa_morristown0",
+            "type": "Edfa",
+            "type_variety": "edfa_s10L",            
+            "operational": {
+                "gain_target": 13,
+                "tilt_target": 0,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_morristown1",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 9,
+                "tilt_target": 0,
+                "out_voa": -1
+            }
+        },
+        {
+            "uid": "Span2",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 95.5,
+                "loss_coef": 0.220,
+                "length_units": "km",
+                "att_in": 0
+            }
+        },
+        {
+            "uid": "raman_stroudsburg",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 14,
+                "tilt_target": -2,
+                "out_voa": -0.8
+            }
+        },
+        {
+            "uid": "edfa_stroudsburg",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 8,
+                "tilt_target": 0,
+                "out_voa": -1
+            }
+        },
+        {
+            "uid": "Span3",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 99.0,
+                "loss_coef": 0.227,
+                "length_units": "km",
+                "att_in": 0
+            }
+        },
+        {
+            "uid": "raman_peckville",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1.5,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_peckville",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 10.5,
+                "tilt_target": 0,
+                "out_voa": 0,
+                "out_power": 1
+            }
+        },
+        {
+            "uid": "Span4",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 120.0,
+                "loss_coef": 0.221,
+                "length_units": "km",
+                "att_in": 0
+            }
+        },
+        {
+            "uid": "raman_binghamton",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 10,
+                "tilt_target": -2,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_binghamton",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 13.5,
+                "tilt_target": 0,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "roadm_bing",
+            "type": "Roadm"
+        },
+        {
+            "uid": "bing",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        }
+    ],
+    "connections": [
+    {
+        "from_node": "111",
+        "to_node": "roadm_111"
+    },
+    {
+        "from_node": "roadm_111",
+        "to_node": "edfa_111"
+    },
+    {
+        "from_node": "edfa_111",
+        "to_node": "Span1"
+    },
+    {
+        "from_node": "Span1",
+        "to_node": "edfa_morristown0"
+    },
+    {
+        "from_node": "edfa_morristown0",
+        "to_node": "edfa_morristown1"
+    },
+    {
+        "from_node": "edfa_morristown1",
+        "to_node": "Span2"
+    },
+    {
+        "from_node": "Span2",
+        "to_node": "raman_stroudsburg"
+    },
+    {
+        "from_node": "raman_stroudsburg",
+        "to_node": "edfa_stroudsburg"
+    },
+    {
+        "from_node": "edfa_stroudsburg",
+        "to_node": "Span3"
+    },
+    {
+        "from_node": "Span3",
+        "to_node": "raman_peckville"
+    },
+    {
+        "from_node": "raman_peckville",
+        "to_node": "edfa_peckville"
+    },
+    {
+        "from_node": "edfa_peckville",
+        "to_node": "Span4"
+    },
+    {
+        "from_node": "Span4",
+        "to_node": "raman_binghamton"
+    },
+    {
+        "from_node": "raman_binghamton",
+        "to_node": "edfa_binghamton"
+    },
+    {
+        "from_node": "edfa_binghamton",
+        "to_node": "roadm_bing"
+    },
+    {
+        "from_node": "roadm_bing",
+        "to_node": "bing"
+    }
+]
+}
