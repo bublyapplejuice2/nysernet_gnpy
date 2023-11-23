@@ -90,8 +90,8 @@
             "max_loss": 42,
             "padding": 10,
             "EOL": 0,
-            "con_in": 0.75,
-            "con_out": 0.75
+            "con_in": 0.3,
+            "con_out": 0.3
             }
       ],
       "Roadm":[{
@@ -105,9 +105,9 @@
                             }            
             }],
       "SI":[{
-            "f_min": 191.3e12,
+            "f_min": 190.1e12,
             "baud_rate": 32e9,
-            "f_max":195.1e12,
+            "f_max":195.3e12,
             "spacing": 50e9,
             "power_dbm": 0,
             "power_range_db": [0,0,1],
@@ -119,7 +119,7 @@
             {
             "type_variety": "vendorA",
             "frequency":{
-                        "min": 191.35e12,
+                        "min": 190.1e12,
                         "max": 196.1e12
                         },
             "mode":[
