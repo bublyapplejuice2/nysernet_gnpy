@@ -33,17 +33,6 @@
                   "allowed_for_design": true
             },           
             {
-                  "type_variety": "4pumps_raman",
-                  "type_def": "fixed_gain",
-                  "raman": true,
-                  "gain_flatmax": 15,
-                  "gain_min": 9,
-                  "p_max": 30,
-                  "nf0": -1,
-                  "nf_max": -1,
-                  "allowed_for_design": false
-            },
-            {
                   "type_variety": "amp_s20H",
                   "type_def": "variable_gain",
                   "gain_flatmax": 20,
@@ -64,7 +53,29 @@
                   "nf_max": 10,
                   "out_voa_auto": false,
                   "allowed_for_design": true
-            }                         
+            },
+            {
+                  "type_variety": "amp_s20H_raman",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 15,
+                  "gain_min": 9,
+                  "p_max": 30,
+                  "nf_min": 0,
+                  "nf_max": 0,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            },
+            {
+                  "type_variety": "amp_s20L_raman",
+                  "type_def": "variable_gain",
+                  "gain_flatmax": 15,
+                  "gain_min": 9,
+                  "p_max": 30,
+                  "nf_min": 5,
+                  "nf_max": 7,
+                  "out_voa_auto": false,
+                  "allowed_for_design": true
+            }
       ],
       "Fiber":[{
             "type_variety": "SSMF",
@@ -81,7 +92,7 @@
             }
       ],
       "Span":[{
-            "power_mode":true,
+            "power_mode":false,
             "delta_power_range_db": [-2,3,0.5],
             "max_fiber_lineic_loss_for_raman": 0.25,
             "target_extended_gain": 3,
@@ -105,9 +116,9 @@
                             }            
             }],
       "SI":[{
-            "f_min": 190.1e12,
-            "baud_rate": 32e9,
-            "f_max":195.3e12,
+            "f_min": 193.30e12,
+            "baud_rate": 50e9,
+            "f_max":193.75e12,
             "spacing": 50e9,
             "power_dbm": 0,
             "power_range_db": [0,0,1],
