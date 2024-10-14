@@ -55,24 +55,14 @@
                   "allowed_for_design": true
             },
             {
-                  "type_variety": "amp_s20H_raman",
-                  "type_def": "variable_gain",
+                  "type_variety": "4pumps_raman",
+                  "type_def": "fixed_gain",
+                  "raman": true,
                   "gain_flatmax": 15,
                   "gain_min": 9,
                   "p_max": 30,
-                  "nf_min": 0,
-                  "nf_max": 0,
-                  "out_voa_auto": false,
-                  "allowed_for_design": true
-            },
-            {
-                  "type_variety": "amp_s20L_raman",
-                  "type_def": "variable_gain",
-                  "gain_flatmax": 15,
-                  "gain_min": 9,
-                  "p_max": 30,
-                  "nf_min": 5,
-                  "nf_max": 7,
+                  "nf0": -1,
+                  "nf_min": -10,
                   "out_voa_auto": false,
                   "allowed_for_design": true
             }

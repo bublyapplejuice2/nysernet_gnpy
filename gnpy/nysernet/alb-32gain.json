@@ -28,13 +28,13 @@
                 "length": 76,
                 "loss_coef": 0.237,
                 "length_units": "km",
-                "att_in": 1.2
+                "att_in": 0
             }
         },
         {
             "uid": "raman_saug",
             "type": "Edfa",
-            "type_variety": "amp_s20H_raman",            
+            "type_variety": "4pumps_raman",            
             "operational": {
                 "gain_target": 15,
                 "tilt_target": -1.0,
@@ -46,7 +46,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s20L",            
             "operational": {
-                "gain_target": 12,
+                "gain_target": 6.5,
                 "tilt_target": -1.0,
                 "out_voa": 3.5
             }
@@ -80,13 +80,13 @@
                 "length": 80,
                 "loss_coef": 0.244,
                 "length_units": "km",
-                "att_in": 1.2
+                "att_in": 0
             }
         },
         {
             "uid": "raman_suffern",
             "type": "Edfa",
-            "type_variety": "amp_s20L_raman",            
+            "type_variety": "4pumps_raman",            
             "operational": {
                 "gain_target": 15,
                 "tilt_target": -1.5,
@@ -105,7 +105,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s20L",            
             "operational": {
-                "gain_target": 11,
+                "gain_target": 10.5,
                 "tilt_target": -1,
                 "out_voa": 1
             }

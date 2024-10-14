@@ -1,0 +1,1 @@
+gnpy-transmission-example gnpy/nysernet/alb-32gain.json -e gnpy/nysernet/eqpt_config_gain.json --spectrum gnpy/nysernet/spectrum.json --sim-params gnpy/nysernet/sim_params.json --show-channels 
