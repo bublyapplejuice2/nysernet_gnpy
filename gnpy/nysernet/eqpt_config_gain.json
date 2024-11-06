@@ -7,7 +7,7 @@
                   "p_max": 21.3,
                   "nf_min": 6.2,
                   "nf_max": 11,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             },
             {
@@ -18,7 +18,7 @@
                   "p_max": 21.3,
                   "nf_min": 5.8,
                   "nf_max": 15,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             }, 
             {
@@ -29,7 +29,7 @@
                   "p_max": 11,
                   "nf_min": 5.6,
                   "nf_max": 7.5,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             },           
             {
@@ -40,7 +40,7 @@
                   "p_max": 20.8,
                   "nf_min": 5.5,
                   "nf_max": 9.5,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             },
             {
@@ -51,7 +51,7 @@
                   "p_max": 20.8,
                   "nf_min": 6.5,
                   "nf_max": 10,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             },
             {
@@ -63,7 +63,7 @@
                   "p_max": 30,
                   "nf0": -1,
                   "nf_min": -10,
-                  "out_voa_auto": false,
+                  "out_voa_auto": true,
                   "allowed_for_design": true
             }
       ],
@@ -82,7 +82,7 @@
             }
       ],
       "Span":[{
-            "power_mode":false,
+            "power_mode":true,
             "delta_power_range_db": [-2,3,0.5],
             "max_fiber_lineic_loss_for_raman": 0.25,
             "target_extended_gain": 3,
@@ -110,7 +110,7 @@
             "baud_rate": 50e9,
             "f_max":193.75e12,
             "spacing": 50e9,
-            "power_dbm": 0,
+            "power_dbm": -3.5,
             "power_range_db": [0,0,1],
             "roll_off": 0.15,
             "tx_osnr": 40,
