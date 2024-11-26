@@ -61,8 +61,8 @@
                   "gain_flatmax": 15,
                   "gain_min": 9,
                   "p_max": 30,
-                  "nf0": -1,
-                  "nf_min": -10,
+                  "nf0": -2,
+                  "nf_min": -20,
                   "out_voa_auto": true,
                   "allowed_for_design": true
             }
@@ -91,8 +91,8 @@
             "max_loss": 42,
             "padding": 10,
             "EOL": 0,
-            "con_in": 0.3,
-            "con_out": 0.3
+            "con_in": 0.0,
+            "con_out": 0.0
             }
       ],
       "Roadm":[{

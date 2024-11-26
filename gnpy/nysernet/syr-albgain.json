@@ -1,11 +1,15 @@
 {
-    "network_name": "Optical Layer Syr-32AoA",
+    "network_name": "Optical Layer Syr-Alb",
     "elements": [
 
         {
             "uid": "syracuse",
             "type": "Transceiver",
             "type_variety": "vendorA"
+        },
+        {
+            "uid": "roadm_syracuse",
+            "type": "Roadm"
         },
         {
             "uid": "edfa_syracuse",
@@ -23,9 +27,8 @@
             "type_variety": "SSMF",
             "params": {
                 "length": 77,
-                "loss_coef": 0.253,
-                "length_units": "km",
-                "att_in": 1.5
+                "loss_coef": 0.230,
+                "length_units": "km"
             }
         },
         {
@@ -53,10 +56,9 @@
             "type": "Fiber",
             "type_variety": "SSMF",
             "params": {
-                "length": 56,
-                "loss_coef": 0.231,
-                "length_units": "km",
-                "att_in": 1.5
+                "length": 65,
+                "loss_coef": 0.212,
+                "length_units": "km"
             }
         },
         {
@@ -85,9 +87,8 @@
             "type_variety": "SSMF",
             "params": {
                 "length": 68,
-                "loss_coef": 0.235,
-                "length_units": "km",
-                "att_in": 1.5
+                "loss_coef": 0.222,
+                "length_units": "km"
             }
         },
         {
@@ -123,9 +124,8 @@
             "type_variety": "SSMF",
             "params": {
                 "length": 55,
-                "loss_coef": 0.236,
-                "length_units": "km",
-                "att_in": 1.2
+                "loss_coef": 0.263,
+                "length_units": "km"
             }
         },
         {
@@ -151,6 +151,10 @@
     "connections": [
     {
         "from_node": "syracuse",
+        "to_node": "roadm_syracuse"
+    },
+    {
+        "from_node": "roadm_syracuse",
         "to_node": "edfa_syracuse"
     },
     {
