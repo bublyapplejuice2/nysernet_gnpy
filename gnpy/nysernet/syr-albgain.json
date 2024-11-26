@@ -124,8 +124,9 @@
             "type_variety": "SSMF",
             "params": {
                 "length": 55,
-                "loss_coef": 0.263,
-                "length_units": "km"
+                "loss_coef": 0.264,
+                "length_units": "km",
+                "con_out": 1.2
             }
         },
         {
@@ -133,7 +134,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s20L",            
             "operational": {
-                "gain_target": 18.5,
+                "gain_target": 19.5,
                 "tilt_target": -1.5,
                 "out_voa": 0
             }

@@ -36,7 +36,7 @@
             "type_variety": "4pumps_raman",            
             "operational": {
                 "gain_target": 15,
-                "tilt_target": -1.0,
+                "tilt_target": -1,
                 "out_voa": 0
             }
         },
@@ -46,7 +46,7 @@
             "type_variety": "edfa_s20L",            
             "operational": {
                 "gain_target": 12,
-                "tilt_target": -1.0,
+                "tilt_target": -1,
                 "out_voa": 9
             }
         },
@@ -57,7 +57,8 @@
             "params": {
                 "length": 44,
                 "loss_coef": 0.225,
-                "length_units": "km"
+                "length_units": "km",
+                "con_out": 1.2
             }
         },
         {
@@ -114,7 +115,8 @@
             "params": {
                 "length": 88,
                 "loss_coef": 0.3,
-                "length_units": "km"         
+                "length_units": "km",
+                "con_out": 1.2       
             }
         },
         {
@@ -123,7 +125,7 @@
             "type_variety": "edfa_s20H",            
             "operational": {
                 "gain_target": 26.5,
-                "tilt_target": -1.0,
+                "tilt_target": -1,
                 "out_voa": 0
             }
         },
