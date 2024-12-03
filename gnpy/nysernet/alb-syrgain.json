@@ -1,0 +1,217 @@
+{
+    "network_name": "Optical Layer Alb-Syr",
+    "elements": [
+        {
+            "uid": "albany",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        },
+        {
+            "uid": "roadm_albany",
+            "type": "Roadm"
+        },
+        {
+            "uid": "edfa_albany",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1,
+                "out_voa": 2.5
+            }
+        },
+        {
+            "uid": "SpanA",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 55,
+                "loss_coef": 0.244,
+                "length_units": "km",
+                "con_out": 1.2
+            }
+        },
+        {
+            "uid": "edfa_amsterdam",
+            "type": "Edfa",
+            "type_variety": "amp_s20H",            
+            "operational": {
+                "gain_target": 16.5,
+                "tilt_target": 0,
+                "out_voa": 4.5
+            }
+        },
+        {
+            "uid": "SpanB",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 68,
+                "loss_coef": 0.226,
+                "length_units": "km"
+            }
+        },
+        {
+            "uid": "raman_mohawk",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 12,
+                "tilt_target": -1,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_mohawk",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 7,
+                "tilt_target": 0,
+                "out_voa": 5.5
+            }
+        },
+        {
+            "uid": "SpanC",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 65,
+                "loss_coef": 0.211,
+                "length_units": "km"
+            }
+        },
+        {
+            "uid": "raman_rome",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 12,
+                "tilt_target": -1.5,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "Fused0",
+            "type": "Fused",
+            "params": {
+              "loss": 0.9
+            }
+        },
+        {
+            "uid": "edfa_rome",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 8,
+                "tilt_target": 0,
+                "out_voa": 2.5
+            }
+        },
+        {
+            "uid": "SpanD",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 77,
+                "loss_coef": 0.231,
+                "length_units": "km"
+            }
+        },
+        {
+            "uid": "raman_syrancuse",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 11,
+                "tilt_target": -1,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_syracuse",
+            "type": "Edfa",
+            "type_variety": "amp_s20H",            
+            "operational": {
+                "gain_target": 11.8,
+                "tilt_target": -0.5,
+                "out_voa": 2.5
+            }
+        },
+        {
+            "uid": "roadm_syracuse",
+            "type": "Roadm"
+        },
+        {
+            "uid": "syracuse",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        }
+    ],
+    "connections": [
+        {
+            "from_node": "albany",
+            "to_node": "roadm_albany"
+        },
+        {
+            "from_node": "roadm_albany",
+            "to_node": "edfa_albany"
+        },
+        {
+            "from_node": "edfa_albany",
+            "to_node": "SpanA"
+        },
+        {
+            "from_node": "SpanA",
+            "to_node": "edfa_amsterdam"
+        },
+        {
+            "from_node": "edfa_amsterdam",
+            "to_node": "SpanB"
+        },
+        {
+            "from_node": "SpanB",
+            "to_node": "raman_mohawk"
+        },
+        {
+            "from_node": "raman_mohawk",
+            "to_node": "edfa_mohawk"
+        },
+        {
+            "from_node": "edfa_mohawk",
+            "to_node": "SpanC"
+        },
+        {
+            "from_node": "SpanC",
+            "to_node": "raman_rome"
+        },
+        {
+            "from_node": "raman_rome",
+            "to_node": "Fused0"
+        },
+        {
+            "from_node": "Fused0",
+            "to_node": "edfa_rome"
+        },
+        {
+            "from_node": "edfa_rome",
+            "to_node": "SpanD"
+        },
+        {
+            "from_node": "SpanD",
+            "to_node": "raman_syrancuse"
+        },
+        {
+            "from_node": "raman_syrancuse",
+            "to_node": "edfa_syracuse"
+        },
+        {
+            "from_node": "edfa_syracuse",
+            "to_node": "roadm_syracuse"
+        },
+        {
+            "from_node": "roadm_syracuse",
+            "to_node": "syracuse"
+        }
+    ]
+}

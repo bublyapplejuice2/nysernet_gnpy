@@ -1,7 +1,7 @@
 import math
 
-snr1_db = 24.00
-snr2_db = 17.26
+snr1_db = 18.3
+snr2_db = 14.6
 
 snr1_linear = 10 ** (snr1_db / 10)
 snr2_linear = 10 ** (snr2_db / 10)

@@ -1,0 +1,206 @@
+{
+    "network_name": "Optical Layer 32AoA-Alb",
+    "elements": [
+        {
+            "uid": "32",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        },
+        {
+            "uid": "roadm_32",
+            "type": "Roadm"
+        },
+        {
+            "uid": "edfa_32",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1.5,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "Span1",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 88,
+                "loss_coef": 0.324,
+                "length_units": "km"
+            }
+        },
+        {
+            "uid": "2edfa_suffern",
+            "type": "Edfa",
+            "type_variety": "edfa_s10L",            
+            "operational": {
+                "gain_target": 16,
+                "tilt_target": 0,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_suffern",
+            "type": "Edfa",
+            "type_variety": "amp_s20L",            
+            "operational": {
+                "gain_target": 11,
+                "tilt_target": 0,
+                "out_voa": 3.5
+            }
+        },
+        {
+            "uid": "Span2",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 80,
+                "loss_coef": 0.236,
+                "length_units": "km"
+            }
+        },
+        {
+            "uid": "2edfa_palz",
+            "type": "Edfa",
+            "type_variety": "edfa_s10L",            
+            "operational": {
+                "gain_target": 12,
+                "tilt_target": 0,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_palz",
+            "type": "Edfa",
+            "type_variety": "edfa_s20L",            
+            "operational": {
+                "gain_target": 11.5,
+                "tilt_target": -0.5,
+                "out_voa": 5
+            }
+        },
+        {
+            "uid": "Span3",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 44,
+                "loss_coef": 0.252,
+                "length_units": "km",
+                "con_out": 1.2
+            }
+        },
+        {
+            "uid": "edfa_saug",
+            "type": "Edfa",
+            "type_variety": "amp_s20H",            
+            "operational": {
+                "gain_target": 14,
+                "tilt_target": 0,
+                "out_voa": 3.5
+            }
+        },
+        {
+            "uid": "Span4",
+            "type": "Fiber",
+            "type_variety": "SSMF",
+            "params": {
+                "length": 76,
+                "loss_coef": 0.270,
+                "length_units": "km"                
+            }
+        },
+        {
+            "uid": "raman_albany",
+            "type": "Edfa",
+            "type_variety": "4pumps_raman",            
+            "operational": {
+                "gain_target": 15,
+                "tilt_target": -1,
+                "out_voa": 0
+            }
+        },
+        {
+            "uid": "edfa_albany",
+            "type": "Edfa",
+            "type_variety": "amp_s20H",            
+            "operational": {
+                "gain_target": 11.5,
+                "tilt_target": -0.5,
+                "out_voa": 0.8
+            }
+        },
+        {
+            "uid": "roadm_albany",
+            "type": "Roadm"
+        },
+        {
+            "uid": "albany",
+            "type": "Transceiver",
+            "type_variety": "vendorA"
+        }
+    ],
+    "connections": [
+        {
+            "from_node": "32",
+            "to_node": "roadm_32"
+        },
+        {
+            "from_node": "roadm_32",
+            "to_node": "edfa_32"
+        },
+        {
+            "from_node": "edfa_32",
+            "to_node": "Span1"
+        },
+        {
+            "from_node": "Span1",
+            "to_node": "2edfa_suffern"
+        },
+        {
+            "from_node": "2edfa_suffern",
+            "to_node": "edfa_suffern"
+        },
+        {
+            "from_node": "edfa_suffern",
+            "to_node": "Span2"
+        },
+        {
+            "from_node": "Span2",
+            "to_node": "2edfa_palz"
+        },
+        {
+            "from_node": "2edfa_palz",
+            "to_node": "edfa_palz"
+        },
+        {
+            "from_node": "edfa_palz",
+            "to_node": "Span3"
+        },
+        {
+            "from_node": "Span3",
+            "to_node": "edfa_saug"
+        },
+        {
+            "from_node": "edfa_saug",
+            "to_node": "Span4"
+        },
+        {
+            "from_node": "Span4",
+            "to_node": "raman_albany"
+        },
+        {
+            "from_node": "raman_albany",
+            "to_node": "edfa_albany"
+        },
+        {
+            "from_node": "edfa_albany",
+            "to_node": "roadm_albany"
+        },
+        {
+            "from_node": "roadm_albany",
+            "to_node": "albany"
+        }
+    ]
+}
