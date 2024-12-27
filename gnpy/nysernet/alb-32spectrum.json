@@ -6,8 +6,8 @@
                   "baud_rate": 32e9,
                   "slot_width": 50e9,
                   "delta_pdb": 0,
-                  "roll_off": 0.15,
-                  "tx_osnr": 40,
+                  "roll_off": 0.2,
+                  "tx_osnr": 37.5,
                   "label": "mode_1"
             },
             {
@@ -16,8 +16,8 @@
                   "baud_rate": 32e9,
                   "slot_width": 50e9,
                   "delta_pdb": 0,
-                  "roll_off": 0.15,
-                  "tx_osnr": 40,
+                  "roll_off": 0.2,
+                  "tx_osnr": 37.5,
                   "label": "mode_2"
             },
             {
@@ -26,8 +26,8 @@
                   "baud_rate": 32e9,
                   "slot_width": 50e9,
                   "delta_pdb": 0,
-                  "roll_off": 0.15,
-                  "tx_osnr": 40,
+                  "roll_off": 0.2,
+                  "tx_osnr": 37.5,
                   "label": "mode_3"
             },
             {
@@ -36,8 +36,8 @@
                   "baud_rate": 32e9,
                   "slot_width": 50e9,
                   "delta_pdb": 0,
-                  "roll_off": 0.15,
-                  "tx_osnr": 40,
+                  "roll_off": 0.2,
+                  "tx_osnr": 37.5,
                   "label": "mode_4"
             },
             {
@@ -46,8 +46,8 @@
                   "baud_rate": 32e9,
                   "slot_width": 75e9,
                   "delta_pdb": 0,
-                  "roll_off": 0.15,
-                  "tx_osnr": 40,
+                  "roll_off": 0.2,
+                  "tx_osnr": 37.5,
                   "label": "mode_5"
             }
       ]

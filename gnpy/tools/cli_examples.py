@@ -267,25 +267,27 @@ def transmission_main_example(args=None):
     if args.show_channels:
         print('\nThe GSNR per channel at the end of the line is:')
         print(
-            '{:>5}{:>26}{:>26}{:>28}{:>28}{:>28}' .format(
+            '{:>5}{:>26}{:>26}{:>28}{:>28}{:>28}{:>28}' .format(
                 'Ch. #',
                 'Channel frequency (THz)',
                 'Channel power (dBm)',
                 'OSNR ASE (signal bw, dB)',
                 'SNR NLI (signal bw, dB)',
-                'GSNR (signal bw, dB)'))
+                'GSNR (signal bw, dB)',
+                'eSNR (estimated, dB)',))
         for final_carrier, ch_osnr, ch_snr_nl, ch_snr in zip(
                 infos.carriers, path[-1].osnr_ase, path[-1].osnr_nli, path[-1].snr):
             ch_freq = final_carrier.frequency * 1e-12
             ch_power = lin2db(final_carrier.power.signal * 1e3)
             print(
-                '{:5}{:26.5f}{:26.2f}{:28.2f}{:28.2f}{:28.2f}' .format(
+                '{:5}{:26.5f}{:26.2f}{:28.2f}{:28.2f}{:28.2f}{:28.2f}' .format(
                     final_carrier.channel_number, round(
                         ch_freq, 5), round(
                         ch_power, 2), round(
                         ch_osnr, 2), round(
                         ch_snr_nl, 2), round(
-                            ch_snr, 2)))
+                        ch_snr, 2), round(
+                        ch_snr/1.15, 2)))
 
     if not args.source:
         print(f'\n(No source node specified: picked {source.uid})')
