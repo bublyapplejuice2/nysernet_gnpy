@@ -118,7 +118,9 @@
             }],
       "Transceiver":[
             {
-            "type_variety": "vendorA"
+            "type_variety": "vendorA",
+            "frequency": 191.3e12,
+            "mode": {}
             }
       ]
 }

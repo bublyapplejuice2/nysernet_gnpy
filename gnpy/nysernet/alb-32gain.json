@@ -27,7 +27,7 @@
             "params": {
                 "length": 76,
                 "loss_coef": 0.251,
-                "length_units": "km"                
+                "length_units": "km"
             }
         },
         {
