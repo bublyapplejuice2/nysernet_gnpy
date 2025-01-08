@@ -1,3 +1,5 @@
+optuna_study.db
+
 # Virtual env
 .venv
 

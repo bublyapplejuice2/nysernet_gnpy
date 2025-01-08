@@ -1,8 +1,7 @@
 import subprocess
 import re
 import math
-
-Q_FACTOR = 1.3
+import argparse
 
 def run_shell_script(script_name):
     try:
@@ -26,78 +25,69 @@ def get_gsnr_from_table(stdout, channel_freq):
 
     return None
 
-# Input CHANNEL_FREQ from the user
-try:
-    user_input = input("Enter the channel frequency: ")
-    channel_freq = float(user_input)  # Validate input as a float
-    channel_freq = f"{channel_freq:.5f}"  # Ensure 5 decimal places
-except ValueError:
-    print("Input is not a valid float. Exiting.")
-    exit(1)
+def main():
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="Calculate total OSNR for specified channel frequency.")
+    parser.add_argument("channel_freq", type=float, help="Channel frequency as a float (e.g., 193.5)")
+    args = parser.parse_args()
+    
+    # Ensure the channel frequency has 5 decimal places
+    channel_freq = f"{args.channel_freq:.5f}"
 
-print("Syr->Alb->Nyc")
-stdout1 = run_shell_script("./syr-albgain.sh")
-snr1_db = get_gsnr_from_table(stdout1, channel_freq)
+    print("Syr->Alb->Nyc")
+    stdout1 = run_shell_script("./syr-albgain.sh")
+    snr1_db = get_gsnr_from_table(stdout1, channel_freq)
 
-stdout2 = run_shell_script("./alb-32gain.sh")
-snr2_db = get_gsnr_from_table(stdout2, channel_freq)
+    stdout2 = run_shell_script("./alb-32gain.sh")
+    snr2_db = get_gsnr_from_table(stdout2, channel_freq)
 
-if snr1_db and snr2_db:
-    snr1_linear = 10 ** (float(snr1_db) / 10)
-    snr2_linear = 10 ** (float(snr2_db) / 10)
-    snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
-    snr_total_linear_esnr = snr_total_linear / Q_FACTOR
-    snr_total_db = 10 * math.log10(snr_total_linear)
-    snr_total_db_esnr = 10 * math.log10(snr_total_linear_esnr)
-    
-    print(f"Total OSNR: {snr_total_db:.2f} dB")
-elif snr1_db:
-    snr1_linear = 10 ** (float(snr1_db) / 10)
-    snr1_linear_esnr = snr1_linear / Q_FACTOR
-    snr1_db = 10 * math.log10(snr1_linear)
-    snr1_db_esnr = 10 * math.log10(snr1_linear_esnr)
-    
-    print(f"Total OSNR: {snr1_db:.2f}")
-elif snr2_db:
-    snr2_linear = 10 ** (float(snr2_db) / 10)
-    snr2_linear_esnr = snr2_linear / Q_FACTOR
-    snr2_db = 10 * math.log10(snr2_linear)
-    snr2_db_esnr = 10 * math.log10(snr2_linear_esnr)
-    
-    print(f"Total OSNR: {snr2_db:.2f}")
-else:
-    print("No SNR values found")
-  
-print()  
-print("Nyc->Alb->Syr")
-stdout1 = run_shell_script("./32-albgain.sh")
-snr1_db = get_gsnr_from_table(stdout1, channel_freq)
+    if snr1_db and snr2_db:
+        snr1_linear = 10 ** (float(snr1_db) / 10)
+        snr2_linear = 10 ** (float(snr2_db) / 10)
+        snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
+        snr_total_db = 10 * math.log10(snr_total_linear)
+        
+        print(f"Total OSNR: {snr_total_db:.2f} dB")
+    elif snr1_db:
+        snr1_linear = 10 ** (float(snr1_db) / 10)
+        snr1_db = 10 * math.log10(snr1_linear)
+        
+        print(f"Total OSNR: {snr1_db:.2f}")
+    elif snr2_db:
+        snr2_linear = 10 ** (float(snr2_db) / 10)
+        snr2_db = 10 * math.log10(snr2_linear)
+        
+        print(f"Total OSNR: {snr2_db:.2f}")
+    else:
+        print("No SNR values found")
 
-stdout2 = run_shell_script("./alb-syrgain.sh")
-snr2_db = get_gsnr_from_table(stdout2, channel_freq)
+    print()  
+    print("Nyc->Alb->Syr")
+    stdout1 = run_shell_script("./32-albgain.sh")
+    snr1_db = get_gsnr_from_table(stdout1, channel_freq)
 
-if snr1_db and snr2_db:
-    snr1_linear = 10 ** (float(snr1_db) / 10)
-    snr2_linear = 10 ** (float(snr2_db) / 10)
-    snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
-    snr_total_linear_esnr = snr_total_linear / Q_FACTOR
-    snr_total_db = 10 * math.log10(snr_total_linear)
-    snr_total_db_esnr = 10 * math.log10(snr_total_linear_esnr)
-    
-    print(f"Total OSNR: {snr_total_db:.2f} dB")
-elif snr1_db:
-    snr1_linear = 10 ** (float(snr1_db) / 10)
-    snr1_linear_esnr = snr1_linear / Q_FACTOR
-    snr1_db = 10 * math.log10(snr1_linear)
-    snr1_db_esnr = 10 * math.log10(snr1_linear_esnr)
-    
-    print(f"Total OSNR: {snr1_db:.2f}")
-elif snr2_db:
-    snr2_linear = 10 ** (float(snr2_db) / 10)
-    snr2_linear_esnr = snr2_linear / Q_FACTOR
-    snr2_db = 10 * math.log10(snr2_linear)
-    snr2_db_esnr = 10 * math.log10(snr2_linear_esnr)
-    
-    print(f"Total OSNR: {snr2_db:.2f}")
-else:
-    print("No SNR values found")
+    stdout2 = run_shell_script("./alb-syrgain.sh")
+    snr2_db = get_gsnr_from_table(stdout2, channel_freq)
+
+    if snr1_db and snr2_db:
+        snr1_linear = 10 ** (float(snr1_db) / 10)
+        snr2_linear = 10 ** (float(snr2_db) / 10)
+        snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
+        snr_total_db = 10 * math.log10(snr_total_linear)
+        
+        print(f"Total OSNR: {snr_total_db:.2f} dB")
+    elif snr1_db:
+        snr1_linear = 10 ** (float(snr1_db) / 10)
+        snr1_db = 10 * math.log10(snr1_linear)
+        
+        print(f"Total OSNR: {snr1_db:.2f}")
+    elif snr2_db:
+        snr2_linear = 10 ** (float(snr2_db) / 10)
+        snr2_db = 10 * math.log10(snr2_linear)
+        
+        print(f"Total OSNR: {snr2_db:.2f}")
+    else:
+        print("No SNR values found")
+
+if __name__ == "__main__":
+    main()
