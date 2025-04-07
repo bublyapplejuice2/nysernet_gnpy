@@ -15,7 +15,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s20L",            
             "operational": {
-                "gain_target": 20,
+                "gain_target": 15,
                 "tilt_target": -1.5,
                 "out_voa": 0
             }
@@ -35,7 +35,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s10L",            
             "operational": {
-                "gain_target": 14,
+                "gain_target": 16,
                 "tilt_target": 0,
                 "out_voa": 0
             }
@@ -45,7 +45,7 @@
             "type": "Edfa",
             "type_variety": "amp_s20L",            
             "operational": {
-                "gain_target": 9,
+                "gain_target": 11,
                 "tilt_target": 0,
                 "out_voa": 0
             }
@@ -65,7 +65,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s10L",            
             "operational": {
-                "gain_target": 10,
+                "gain_target": 12,
                 "tilt_target": 0,
                 "out_voa": 0
             }
@@ -75,7 +75,7 @@
             "type": "Edfa",
             "type_variety": "edfa_s20L",            
             "operational": {
-                "gain_target": 11,
+                "gain_target": 11.5,
                 "tilt_target": -0.5,
                 "out_voa": 0
             }
@@ -96,7 +96,7 @@
             "type": "Edfa",
             "type_variety": "amp_s20H",            
             "operational": {
-                "gain_target": 11,
+                "gain_target": 14,
                 "tilt_target": 0,
                 "out_voa": 0
             }
@@ -126,9 +126,9 @@
             "type": "Edfa",
             "type_variety": "amp_s20H",            
             "operational": {
-                "gain_target": 11,
+                "gain_target": 11.5,
                 "tilt_target": -0.5,
-                "out_voa": 6.5
+                "out_voa": 0
             }
         },
         {

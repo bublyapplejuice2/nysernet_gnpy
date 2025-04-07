@@ -25,6 +25,9 @@ def get_gsnr_from_table(stdout, channel_freq):
 
     return None
 
+def get_final_roadm_effective_pch_power(stdout):
+    return stdout.split("effective pch (dBm):")[-1].split("\n")[0].strip()
+
 def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Calculate total OSNR for specified channel frequency.")

@@ -26,10 +26,10 @@ def get_gain_limits(type_variety):
 
 def simulate_network(direction, segment, json_file_path):
     script_mapping = {
-        ("nyc-alb-syr", "segment1"): "./32-alboptimize.sh",
+        ("nyc-alb-syr", "segment1"): "./32-albgain.sh",
         ("nyc-alb-syr", "segment2"): "./alb-syrgain.sh",
         ("syr-alb-nyc", "segment1"): "./syr-albgain.sh",
-        ("syr-alb-nyc", "segment2"): "./alb-32optimize.sh",
+        ("syr-alb-nyc", "segment2"): "./alb-32gain.sh",
     }
 
     script_name = script_mapping.get((direction, segment))
@@ -61,22 +61,27 @@ def get_gsnr_from_table(stdout, channel_freq):
 
     return None
 
+def get_final_roadm_effective_pch_power(stdout):
+    return stdout.split("effective pch (dBm):")[-1].split("\n")[0].strip()
+    
 # Calculate OSNR for the specified direction
 def calculate_osnr(direction, channel_freq, json_file_path):
     # Simulate the first segment
     stdout1 = simulate_network(direction, segment="segment1", json_file_path=json_file_path)
     snr1_db = get_gsnr_from_table(stdout1, channel_freq)
+    final_power1 = get_final_roadm_effective_pch_power(stdout1)
 
     # Simulate the second segment
     stdout2 = simulate_network(direction, segment="segment2", json_file_path=json_file_path)
     snr2_db = get_gsnr_from_table(stdout2, channel_freq)
+    final_power2 = get_final_roadm_effective_pch_power(stdout2)
 
     # Calculate total OSNR
     if snr1_db and snr2_db:
         snr1_linear = 10 ** (float(snr1_db) / 10)
         snr2_linear = 10 ** (float(snr2_db) / 10)
         snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
-        return 10 * math.log10(snr_total_linear)
+        return (10 * math.log10(snr_total_linear), float(final_power1), float(final_power2))
     elif snr1_db:
         return float(snr1_db)
     elif snr2_db:
@@ -84,68 +89,65 @@ def calculate_osnr(direction, channel_freq, json_file_path):
     else:
         raise ValueError("No SNR values found in simulation outputs")
 
-# Objective function for Optuna
 def objective(trial):
-    # Create a temporary file in /dev/shm for the worker (RAM-backed filesystem)
     with tempfile.NamedTemporaryFile(mode="w+", dir="/dev/shm", suffix=".json", delete=False) as temp_json:
         temp_json_path = temp_json.name
-        shutil.copyfile(NETWORK_JSON, temp_json_path)  # Copy original JSON to temp file
+        shutil.copyfile(NETWORK_JSON, temp_json_path)
 
         try:
-            # Update the temp JSON with trial-specific gain targets
             with open(temp_json_path, "r") as f:
                 network_data = json.load(f)
 
-            gain_targets = []
             for element in network_data["elements"]:
                 if element["type"] == "Edfa":
                     type_variety = element["type_variety"]
                     gain_min, gain_max = get_gain_limits(type_variety)
                     gain_target = trial.suggest_float(f"gain_target_{element['uid']}", gain_min, gain_max, step=0.5)
-                    element["operational"]["gain_target"] = gain_target  # Update JSON
-                    gain_targets.append(gain_target)
+                    element["operational"]["gain_target"] = gain_target
 
-            # Write updated network data back to temp JSON
             with open(temp_json_path, "w") as f:
                 json.dump(network_data, f, indent=4)
 
-            # Run the simulation and calculate OSNR
-            osnr = calculate_osnr(DIRECTION, channel_freq="193.50000", json_file_path=temp_json_path)
+            # Run simulation and get (OSNR, final_power1, final_power2)
+            osnr, final_power1, final_power2 = calculate_osnr(DIRECTION, channel_freq="193.50000", json_file_path=temp_json_path)
 
         finally:
-            # Ensure the temp file is removed after use
             os.remove(temp_json_path)
 
-        return osnr  # Maximize OSNR
+        # Invalidate OSNR if final powers are outside [0, 3]
+        if not (-3 <= final_power1 <= 3):
+            return 0  # Penalize by setting OSNR to 0
+
+        return osnr  # Valid result, maximize OSNR
 
 # Function for worker processes
 def optimize_worker(storage_url, study_name):
     study = optuna.load_study(study_name=study_name, storage=storage_url)
-    study.optimize(objective, n_trials=10)  # Each worker runs a subset of trials
+    study.optimize(objective, n_trials=20)  # Each worker runs a subset of trials
 
 if __name__ == "__main__":
-    # Set up the shared storage
-    storage_url = "sqlite:///optuna_study.db"  # SQLite for simplicity
+    storage_url = "sqlite:///optuna_study.db"
     study_name = "osnr_optimization"
 
-    # Create the study
-    optuna.create_study(study_name=study_name, direction="maximize", storage=storage_url, load_if_exists=True)
+    # Create the study without constraints
+    optuna.create_study(
+        study_name=study_name,
+        direction="maximize",
+        storage=storage_url,
+        load_if_exists=True
+    )
 
-    # Number of worker processes
     n_workers = multiprocessing.cpu_count()
 
-    # Start worker processes
     processes = []
     for _ in range(n_workers):
         p = multiprocessing.Process(target=optimize_worker, args=(storage_url, study_name))
         processes.append(p)
         p.start()
 
-    # Wait for all workers to finish
     for p in processes:
         p.join()
 
-    # Output the best results
     study = optuna.load_study(study_name=study_name, storage=storage_url)
     print("Best gain_target values:", study.best_params)
     print("Best OSNR:", study.best_value)

@@ -69,15 +69,15 @@
       ],
       "Fiber":[{
             "type_variety": "SSMF",
-            "dispersion": 1.67e-05,
-            "effective_area": 83e-12,
+            "dispersion": 4e-06,
+            "effective_area": 72e-12,
             "pmd_coef": 1.265e-15
             }
       ],
       "RamanFiber":[{
             "type_variety": "SSMF",
-            "dispersion": 1.67e-05,
-            "effective_area": 83e-12,
+            "dispersion": 4e-06,
+            "effective_area": 72e-12,
             "pmd_coef": 1.265e-15
             }
       ],
