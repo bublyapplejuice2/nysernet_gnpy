@@ -26,10 +26,10 @@ def get_gain_limits(type_variety):
 
 def simulate_network(direction, segment, json_file_path):
     script_mapping = {
-        ("nyc-alb-syr", "segment1"): "./32-albgain.sh",
+        ("nyc-alb-syr", "segment1"): "./32-alboptimize.sh",
         ("nyc-alb-syr", "segment2"): "./alb-syrgain.sh",
         ("syr-alb-nyc", "segment1"): "./syr-albgain.sh",
-        ("syr-alb-nyc", "segment2"): "./alb-32gain.sh",
+        ("syr-alb-nyc", "segment2"): "./alb-32optimize.sh",
     }
 
     script_name = script_mapping.get((direction, segment))
@@ -69,19 +69,17 @@ def calculate_osnr(direction, channel_freq, json_file_path):
     # Simulate the first segment
     stdout1 = simulate_network(direction, segment="segment1", json_file_path=json_file_path)
     snr1_db = get_gsnr_from_table(stdout1, channel_freq)
-    final_power1 = get_final_roadm_effective_pch_power(stdout1)
 
     # Simulate the second segment
     stdout2 = simulate_network(direction, segment="segment2", json_file_path=json_file_path)
     snr2_db = get_gsnr_from_table(stdout2, channel_freq)
-    final_power2 = get_final_roadm_effective_pch_power(stdout2)
 
     # Calculate total OSNR
     if snr1_db and snr2_db:
         snr1_linear = 10 ** (float(snr1_db) / 10)
         snr2_linear = 10 ** (float(snr2_db) / 10)
         snr_total_linear = 1 / ((1 / snr1_linear) + (1 / snr2_linear))
-        return (10 * math.log10(snr_total_linear), float(final_power1), float(final_power2))
+        return 10 * math.log10(snr_total_linear)
     elif snr1_db:
         return float(snr1_db)
     elif snr2_db:
@@ -109,14 +107,10 @@ def objective(trial):
                 json.dump(network_data, f, indent=4)
 
             # Run simulation and get (OSNR, final_power1, final_power2)
-            osnr, final_power1, final_power2 = calculate_osnr(DIRECTION, channel_freq="193.50000", json_file_path=temp_json_path)
+            osnr = calculate_osnr(DIRECTION, channel_freq="193.50000", json_file_path=temp_json_path)
 
         finally:
             os.remove(temp_json_path)
-
-        # Invalidate OSNR if final powers are outside [0, 3]
-        if not (-3 <= final_power1 <= 3):
-            return 0  # Penalize by setting OSNR to 0
 
         return osnr  # Valid result, maximize OSNR
 
