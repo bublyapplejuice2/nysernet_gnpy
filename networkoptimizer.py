@@ -117,7 +117,7 @@ def objective(trial):
 # Function for worker processes
 def optimize_worker(storage_url, study_name):
     study = optuna.load_study(study_name=study_name, storage=storage_url)
-    study.optimize(objective, n_trials=20)  # Each worker runs a subset of trials
+    study.optimize(objective, n_trials=8)  # Each worker runs a subset of trials
 
 if __name__ == "__main__":
     storage_url = "sqlite:///optuna_study.db"
