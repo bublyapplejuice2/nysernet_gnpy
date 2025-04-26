@@ -11,7 +11,7 @@ Common code for CLI examples
 import argparse
 import logging
 import sys
-from math import ceil
+from math import ceil, log10
 from numpy import linspace, mean
 from pathlib import Path
 
@@ -42,6 +42,7 @@ Learn more at https://gnpy.readthedocs.io/
 _help_fname_json = 'FILE.json'
 _help_fname_json_csv = 'FILE.(json|csv)'
 
+AMPLIFIER_NOISE = 21.3  # dB
 
 def show_example_data_dir():
     print(f'{_examples_dir}/')
@@ -287,7 +288,7 @@ def transmission_main_example(args=None):
                         ch_osnr, 2), round(
                         ch_snr_nl, 2), round(
                         ch_snr, 2), round(
-                        ch_snr/1.15, 2)))
+                        gsnr2esnr(ch_snr), 2)))
 
     if not args.source:
         print(f'\n(No source node specified: picked {source.uid})')
@@ -458,3 +459,25 @@ def path_requests_run(args=None):
         else:
             print(f'{ansi_escapes.red}Cannot save output: neither JSON nor CSV file{ansi_escapes.reset}')
             sys.exit(1)
+
+def gsnr2esnr(gsnr_db: float) -> float:
+    """
+    Convert a GSNR in dB to an effective SNR in dB by combining it
+    with a fixed “special” SNR floor via 1/(1/S + 1/S0).
+
+    Args:
+        gsnr_db: the input GSNR in dB (power units).
+
+    Returns:
+        The combined SNR (ESNR) in dB.
+    """
+    # 1) Convert both to linear
+    s_lin    = 10**(gsnr_db   / 10)
+    s0_lin   = 10**(AMPLIFIER_NOISE / 10)
+
+    # 2) Combine: 1 / (1/S + 1/S0)
+    esnr_lin = 1.0 / (1.0/s_lin + 1.0/s0_lin)
+
+    # 3) Back to dB
+    esnr_db  = 10 * log10(esnr_lin)
+    return esnr_db
