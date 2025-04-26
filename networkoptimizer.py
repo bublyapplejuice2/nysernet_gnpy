@@ -11,7 +11,7 @@ import shutil
 
 # File paths
 EQPT_CONFIG_FILE = "gnpy/nysernet/eqpt_config_gain.json"
-NETWORK_JSON = "gnpy/nysernet/32-albgain.json"
+NETWORK_JSON = "gnpy/nysernet/alb-syrgain.json"
 DIRECTION = "nyc-alb-syr"
 
 # Load equipment config
